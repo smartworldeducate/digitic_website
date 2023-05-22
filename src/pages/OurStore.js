@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import ReactStars from "react-rating-stars-component";
 import ProductCard from "../components/ProductCard";
 import Color from "../components/Color";
 import Container from "../components/Container";
-
+import {useDispatch,useSelector} from 'react-redux'
+import { getCategories } from "../features/pcategory/pcategorySlice";
 const OurStore = () => {
+  const pCatStat = useSelector((state) => state.pCategory.pCategories);
+  // console.log(pCatStat)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
   const [grid, setGrid] = useState(4);
+  const data1 = [];
+  console.log(data1)
+  for (let i = 0; i < pCatStat.length; i++) {
+    data1.push({
+      key: i + 1,
+      name: pCatStat[i].title,
+    });
+  }
   return (
     <>
       <Meta title={"Our Store"} />
@@ -18,12 +33,14 @@ const OurStore = () => {
             <div className="filter-card mb-3">
               <h3 className="filter-title">Shop By Categories</h3>
               <div>
-                <ul className="ps-0">
-                  <li>Watch</li>
-                  <li>Tv</li>
-                  <li>Camera</li>
-                  <li>Laptop</li>
+                {data1.map((i)=>{
+                  return(
+                  <ul className="ps-0" key={i.key}>
+                  <li>{i.name}</li>
                 </ul>
+                  )
+                })}
+                
               </div>
             </div>
             <div className="filter-card mb-3">

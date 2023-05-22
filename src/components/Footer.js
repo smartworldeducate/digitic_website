@@ -38,20 +38,20 @@ const Footer = () => {
               <h4 className="text-white mb-4">Contact Us</h4>
               <div>
                 <address className="text-white fs-6">
-                  Hno : 277 Near Vill chopal, <br /> Sonipat, Haryana <br />
-                  PinCode: 131103
+                  Lhr : 0042 Near gulberg, <br /> Gulberg, Lahore <br />
+                  PinCode: 4200
                 </address>
                 <a
                   href="tel:+91 8264954234"
                   className="mt-3 d-block mb-1 text-white"
                 >
-                  +91 8264954234
+                  +92 3039255409
                 </a>
                 <a
                   href="mailto:navdeepdahiya753@gmail.com"
                   className="mt-2 d-block mb-0 text-white"
                 >
-                  navdeepdahiya753@gmail.com
+                  sa5882218@gmail.com
                 </a>
                 <div className="social_icons d-flex align-items-center gap-30 mt-4">
                   <a className="text-white" href="#">

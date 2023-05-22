@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
-import { services } from "../utils/Data";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../features/product/productSlice";
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+  const productState = useSelector((state) => state.product.products);
+  // console.log(productState)
+  const data1 = [];
+  // console.log(data1)
+  for (let i = 0; i < productState.length; i++) {
+    data1.push({
+      key: i + 1,
+      title: productState[i].title,
+      brand: productState[i].brand,
+      category: productState[i].category,
+      color: productState[i].color,
+      price: `${productState[i].price}`,
+      images: `${productState[i]?.images[0]?.url}`,
+     
+    });
+  }
+  
   return (
     <>
       <Container class1="home-wrapper-1 py-5">
@@ -93,13 +114,13 @@ const Home = () => {
         <div className="row">
           <div className="col-12">
             <div className="servies d-flex align-items-center justify-content-between">
-              {services?.map((i, j) => {
+              {data1?.map((i, j) => {
                 return (
                   <div className="d-flex align-items-center gap-15" key={j}>
-                    <img src={i.image} alt="services" />
+                    <img src={i.images} alt="services" />
                     <div>
                       <h6>{i.title}</h6>
-                      <p className="mb-0">{i.tagline}</p>
+                      <p className="mb-0">{i.price}</p>
                     </div>
                   </div>
                 );
